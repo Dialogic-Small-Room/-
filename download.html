@@ -35,10 +35,10 @@
     }
     .close-btn {
       position: absolute;
-      top: 5px;
-      right: 5px;
+      top: 2px;
+      right: 2px;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 12px;
       color: white;
       border: none;
       background: none;
@@ -82,11 +82,13 @@
         window.location.href = downloadLink; // Start the download
       } else {
         document.getElementById('passwordError').style.display = 'block';
+        document.getElementById('passwordInput').value = ''; // Clear password input on error
       }
     }
 
     function closePopup(popupId) {
       document.getElementById(popupId).style.display = 'none';
+      document.getElementById('passwordInput').value = ''; // Clear password input when closing
     }
   </script>
 </head>
