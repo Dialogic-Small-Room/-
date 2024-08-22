@@ -37,6 +37,7 @@
     }
     .password-section {
       margin: 40px 0;
+      display: none; /* Initially hidden */
     }
     .password-input {
       background-color: black;
@@ -44,6 +45,7 @@
       border: 2px solid white;
       padding: 10px;
       width: 200px;
+      ime-mode: active; /* Enable IME for Japanese input */
     }
     .call-button {
       background-color: black;
@@ -63,25 +65,71 @@
       margin-top: 10px;
       display: none;
     }
+    .agreement-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: black;
+      color: white;
+      border: 2px solid white;
+      padding: 20px;
+      text-align: center;
+      z-index: 10000;
+      box-shadow: 0 0 10px white;
+      display: none;
+    }
+    .agreement-popup button {
+      background-color: black;
+      color: white;
+      border: 2px solid white;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .agreement-popup button:hover {
+      background-color: white;
+      color: black;
+    }
   </style>
   <script>
+    let downloadLink = ''; // Variable to hold the download link
+
+    function showAgreementPopup(link) {
+      downloadLink = link;
+      var popup = document.getElementById('agreementPopup');
+      popup.style.display = 'block';
+    }
+
+    function agreeToTerms() {
+      document.getElementById('agreementPopup').style.display = 'none';
+      document.querySelector('.password-section').style.display = 'block';
+    }
+
+    function disagreeToTerms() {
+      document.getElementById('agreementPopup').style.display = 'none';
+    }
+
     function startDownload() {
       const password = document.getElementById('password').value;
       const errorMessage = document.getElementById('errorMessage');
-      let downloadLink = '';
 
-      // Define correct passwords and corresponding files
-      if (password === 'ともだちになろう') {
-        downloadLink = 'Nea.zip';
-      } else if (password === 'ねあもいるよ') {
-        downloadLink = 'Neo.zip';
-      } else {
+      // Validate password (hiragana only)
+      if (!/^[\u3040-\u309F]+$/.test(password)) {
+        errorMessage.innerText = "パスワードはひらがなで入力してください";
         errorMessage.style.display = 'block';
         return;
       }
 
-      errorMessage.style.display = 'none';
-      window.location.href = downloadLink;
+      if ((password === 'ともだちになろう' && downloadLink.includes('Nea')) ||
+          (password === 'ねあもいるよ' && downloadLink.includes('Neo'))) {
+        errorMessage.style.display = 'none';
+        window.location.href = downloadLink;
+      } else {
+        errorMessage.innerText = "パスワードが間違っています";
+        errorMessage.style.display = 'block';
+      }
     }
   </script>
 </head>
@@ -92,10 +140,29 @@
   <main>
     <section class="download-section">
       <h2>UTAU 配布ファイル</h2>
-      <p>パスワードを入力して、UTAUを呼びかけてください。</p>
+      <p>キャラの名前を押して、利用規約に同意してください。その後、パスワードを入力してUTAUを呼びかけてください。</p>
       <hr class="divider"> <!-- 区切り線 -->
+      <ul class="download-list">
+        <li>
+          <div class="character">
+            <img src="nea_icon.jpg" alt="Neaのアイコン" class="character-icon">
+            <div class="character-info">
+              <button class="download-button" onclick="showAgreementPopup('Nea.zip')">Nea 単独音</button>
+            </div>
+          </div>
+        </li>
+        <hr class="divider"> <!-- 区切り線 -->
+        <li>
+          <div class="character">
+            <img src="neo_icon.jpg" alt="Neoのアイコン" class="character-icon">
+            <div class="character-info">
+              <button class="download-button" onclick="showAgreementPopup('Neo.zip')">Neo 単独音</button>
+            </div>
+          </div>
+        </li>
+      </ul>
       <div class="password-section">
-        <input id="password" type="text" class="password-input" placeholder="パスワードを入力してください">
+        <input id="password" type="text" class="password-input" placeholder="ひらがなでパスワードを入力してください">
         <button class="call-button" onclick="startDownload()">呼びかける</button>
         <p id="errorMessage" class="error-message">パスワードが間違っています</p>
       </div>
@@ -104,5 +171,10 @@
   <footer>
     <p>&copy; 2024 okinai</p>
   </footer>
+  <div id="agreementPopup" class="agreement-popup">
+    <p>利用規約をご一読の上、同意しますか？</p>
+    <button onclick="agreeToTerms()">はい</button>
+    <button onclick="disagreeToTerms()">いいえ</button>
+  </div>
 </body>
 </html>
