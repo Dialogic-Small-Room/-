@@ -59,7 +59,7 @@
       color: black;
     }
     .error-message {
-      color: red;
+      color: gray; /* モノクロのエラーメッセージ */
       margin-top: 10px;
       display: none;
     }
@@ -72,9 +72,9 @@
 
       // Define correct passwords and corresponding files
       if (password === 'ともだちになろう') {
-        downloadLink = 'Nea 単独音.zip';
-      } else if (password === 'ねあもいるよ') {
-        downloadLink = 'Neo 単独音.zip';
+        downloadLink = 'Nea.zip';
+      } else if (password === 'ネアもいるよ') {
+        downloadLink = 'Neo.zip';
       } else {
         errorMessage.style.display = 'block';
         return;
@@ -106,4 +106,3 @@
   </footer>
 </body>
 </html>
-
