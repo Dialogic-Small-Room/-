@@ -35,10 +35,10 @@
     }
     .close-btn {
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: 5px;
+      right: 5px;
       cursor: pointer;
-      font-size: 20px;
+      font-size: 16px;
       color: white;
       border: none;
       background: none;
@@ -65,6 +65,8 @@
 
     function agreeToTerms() {
       document.getElementById('agreementPopup').style.display = 'none';
+      document.getElementById('passwordInput').value = ''; // Clear password input
+      document.getElementById('passwordError').style.display = 'none'; // Hide error message
       document.getElementById('passwordPopup').style.display = 'block';
     }
 
@@ -139,7 +141,6 @@
 
   <!-- Agreement Popup -->
   <div id="agreementPopup" class="agreement-popup">
-    <button class="close-btn" onclick="closePopup('agreementPopup')">×</button>
     <p>利用規約をご一読の上、同意しますか？</p>
     <button onclick="agreeToTerms()">はい</button>
     <button onclick="disagreeToTerms()">いいえ</button>
@@ -149,6 +150,7 @@
   <div id="passwordPopup" class="password-popup">
     <button class="close-btn" onclick="closePopup('passwordPopup')">×</button>
     <p>ダウンロードするにはパスワードを入力してください。</p>
+    <p>（利用規約に書いてあるよ。）</p>
     <input type="text" id="passwordInput" placeholder="パスワードを入力"> <!-- Type set to 'text' -->
     <button onclick="checkPassword()">呼びかける</button>
     <p id="passwordError">パスワードが違います。</p> <!-- Monochrome error message -->
