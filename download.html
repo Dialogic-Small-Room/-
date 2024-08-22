@@ -33,6 +33,24 @@
       background-color: white;
       color: black;
     }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 20px;
+      color: white;
+      border: none;
+      background: none;
+    }
+    .close-btn:hover {
+      color: gray;
+    }
+    #passwordError {
+      color: white;
+      margin-top: 10px;
+      display: none; /* Initially hidden */
+    }
   </style>
   <script>
     let downloadLink = ''; // Variable to hold the download link
@@ -61,8 +79,12 @@
         document.getElementById('passwordPopup').style.display = 'none';
         window.location.href = downloadLink; // Start the download
       } else {
-        alert("パスワードが間違っています。");
+        document.getElementById('passwordError').style.display = 'block';
       }
+    }
+
+    function closePopup(popupId) {
+      document.getElementById(popupId).style.display = 'none';
     }
   </script>
 </head>
@@ -117,6 +139,7 @@
 
   <!-- Agreement Popup -->
   <div id="agreementPopup" class="agreement-popup">
+    <button class="close-btn" onclick="closePopup('agreementPopup')">×</button>
     <p>利用規約をご一読の上、同意しますか？</p>
     <button onclick="agreeToTerms()">はい</button>
     <button onclick="disagreeToTerms()">いいえ</button>
@@ -124,9 +147,11 @@
 
   <!-- Password Popup -->
   <div id="passwordPopup" class="password-popup">
+    <button class="close-btn" onclick="closePopup('passwordPopup')">×</button>
     <p>ダウンロードするにはパスワードを入力してください。</p>
-    <input type="password" id="passwordInput" placeholder="パスワードを入力">
-    <button onclick="checkPassword()">送信</button>
+    <input type="text" id="passwordInput" placeholder="パスワードを入力"> <!-- Type set to 'text' -->
+    <button onclick="checkPassword()">呼びかける</button>
+    <p id="passwordError">パスワードが違います。</p> <!-- Monochrome error message -->
   </div>
 
   <script>
