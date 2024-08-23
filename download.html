@@ -5,6 +5,95 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
   <title>ダウンロード配布所</title>
+  <style>
+    .agreement-popup, .password-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: black;
+      color: white;
+      border: 2px solid white;
+      padding: 20px;
+      padding-top: 60px; /* Space at the top for the close button */
+      text-align: center;
+      z-index: 10000;
+      box-shadow: 0 0 10px white;
+      display: none; /* Initially hidden */
+    }
+    .agreement-popup button, .password-popup button {
+      background-color: black;
+      color: white;
+      border: 2px solid white;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .agreement-popup button:hover, .password-popup button:hover {
+      background-color: white;
+      color: black;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px; /* Increased space for better appearance */
+      right: 10px;
+      cursor: pointer;
+      font-size: 14px; /* Smaller font size */
+      color: white;
+      border: none;
+      background: none;
+      padding: 0;
+      margin: 0;
+    }
+    .close-btn:hover {
+      color: gray;
+    }
+    #passwordError {
+      color: white;
+      margin-top: 10px;
+      display: none; /* Initially hidden */
+    }
+  </style>
+  <script>
+    let downloadLink = ''; // Variable to hold the download link
+    let correctPassword = ''; // Variable to hold the correct password
+
+    function showAgreementPopup(link, password) {
+      downloadLink = link;
+      correctPassword = password;
+      var popup = document.getElementById('agreementPopup');
+      popup.style.display = 'block';
+    }
+
+    function agreeToTerms() {
+      document.getElementById('agreementPopup').style.display = 'none';
+      document.getElementById('passwordInput').value = ''; // Clear password input
+      document.getElementById('passwordError').style.display = 'none'; // Hide error message
+      document.getElementById('passwordPopup').style.display = 'block';
+    }
+
+    function disagreeToTerms() {
+      document.getElementById('agreementPopup').style.display = 'none';
+    }
+
+    function checkPassword() {
+      var enteredPassword = document.getElementById('passwordInput').value;
+
+      if (enteredPassword === correctPassword) {
+        document.getElementById('passwordPopup').style.display = 'none';
+        window.location.href = downloadLink; // Start the download
+      } else {
+        document.getElementById('passwordError').style.display = 'block';
+        document.getElementById('passwordInput').value = ''; // Clear password input on error
+      }
+    }
+
+    function closePopup(popupId) {
+      document.getElementById(popupId).style.display = 'none';
+      document.getElementById('passwordInput').value = ''; // Clear password input when closing
+    }
+  </script>
 </head>
 <body>
   <div class="menu-icon" onclick="toggleMenu()">☰</div>
@@ -73,11 +162,15 @@
   <footer>
     <p>&copy; 2024 okinai</p>
   </footer>
+
+  <!-- Agreement Popup -->
   <div id="agreementPopup" class="agreement-popup">
     <p>利用規約をご一読の上、同意しますか？</p>
     <button onclick="agreeToTerms()">はい</button>
     <button onclick="disagreeToTerms()">いいえ</button>
   </div>
+
+  <!-- Password Popup -->
   <div id="passwordPopup" class="password-popup">
     <button class="close-btn" onclick="closePopup('passwordPopup')">×</button>
     <p>ダウンロードするにはパスワードを入力してください。</p>
