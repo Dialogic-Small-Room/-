@@ -54,6 +54,10 @@
       margin-top: 10px;
       display: none; /* Initially hidden */
     }
+    audio {
+      margin-top: 10px;
+      width: 100%;
+    }
   </style>
   <script>
     let downloadLink = ''; // Variable to hold the download link
@@ -93,6 +97,11 @@
       document.getElementById(popupId).style.display = 'none';
       document.getElementById('passwordInput').value = ''; // Clear password input when closing
     }
+
+    function toggleMenu() {
+      var menuTab = document.querySelector('.menu-tab');
+      menuTab.classList.toggle('show-menu');
+    }
   </script>
 </head>
 <body>
@@ -119,6 +128,10 @@
             <img src="nea_icon.jpg" alt="Neaのアイコン" class="character-icon">
             <div class="character-info">
               <button class="download-button" onclick="showAgreementPopup('Nea 単独音.zip', 'ともだちになろう')">Nea 単独音</button>
+              <audio controls>
+                <source src="nea_demo.mp3" type="audio/mpeg">
+                お使いのブラウザでは、オーディオ要素をサポートしていません。
+              </audio>
               <p>原音設定：okinai</p>
               <p>原音設定協力：カノシタ（きのこ）様 ,かたつむり観光客 様</p>
               <p>テスター協力：ニリ缶 様</p>
@@ -131,6 +144,10 @@
             <img src="neo_icon.jpg" alt="Neoのアイコン" class="character-icon">
             <div class="character-info">
               <button class="download-button" onclick="showAgreementPopup('Neo 単独音.zip', 'ねあもいるよ')">Neo 単独音</button>
+              <audio controls>
+                <source src="neo_demo.mp3" type="audio/mpeg">
+                お使いのブラウザでは、オーディオ要素をサポートしていません。
+              </audio>
               <p>原音設定：okinai</p>
               <p>テスター協力：カノシタ（きのこ）様 ,かたつむり観光客 様,ニリ缶 様</p>
             </div>
