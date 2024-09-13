@@ -6,20 +6,20 @@
   <title>キャラ紹介</title>
   <link rel="stylesheet" href="styles.css"> <!-- styles.cssをリンク -->
   <style>
-    /* キャラクターを2列に並べるためのスタイル */
+    /* キャラクター並べ */
     .character-column {
       display: flex;
       justify-content: center; /* 中央揃え */
       flex-wrap: wrap; /* オーバーフローした場合に折り返す */
     }
-    /* キャラクター要素のスタイル */
+    /* 貴様みているな */
     .character {
       text-align: center; /* 中央揃え */
-      width: 200px; /* キャラクター要素の幅 */
-      margin: 10px; /* キャラクター要素のマージン */
-      cursor: pointer; /* ポインターを指定してクリック可能にする */
+      width: 200px; /* キャラクター幅 */
+      margin: 10px; /* キャラクターマージン */
+      cursor: pointer; /* ポインター */
     }
-    /* キャラクターの画像を少し大きくする */
+    /* 画像をサイズ */
     .character img {
       width: 100%; /* 画像の幅を親要素に合わせる */
       height: auto; /* 高さを自動調整 */
@@ -28,7 +28,7 @@
     .character h2 {
       margin-top: 10px; /* キャラ名の上のマージン */
       text-align: center; /* 名前を画像の下に中央揃え */
-      display: block; /* ブロック要素にして独立した行に表示 */
+      display: block; /* ブロック */
     }
   </style>
 </head>
@@ -48,31 +48,31 @@
     <p>キャラクターを押すとプロフィールが見られるよ！</p>
   </header>
   <main>
-    <!-- キャラクターを2列に並べる -->
+    <!-- 列 -->
     <div class="character-column">
-      <!-- Neaのキャラクター -->
+      <!-- Nea -->
       <div class="character" onclick="location.href='nea_profile.html'">
         <img src="nea_icon.jpg" alt="Neaの顔アイコン">
         <h2>Nea</h2>
-        <!-- Neaの情報やイラストをここに追加 -->
+        <!-- Neaの情報-->
       </div>
-      <!-- Neoのキャラクター -->
+      <!-- Neo -->
       <div class="character" onclick="location.href='neo_profile.html'">
         <img src="neo_icon.jpg" alt="Neoの顔アイコン">
         <h2>Neo</h2>
-        <!-- Neoの情報やイラストをここに追加 -->
+        <!-- Neoの情報 -->
       </div>
-      <!-- Pierisのキャラクター -->
+      <!-- Pieris -->
       <div class="character" onclick="location.href='pieris_profile.html'">
         <img src="pieris_icon.jpg" alt="Pierisの顔アイコン">
         <h2>Pieris</h2>
-        <!-- Pierisの情報やイラストをここに追加 -->
+        <!-- Pierisの情報 -->
       </div>
-      <!-- ヒヨコのキャラクター -->
+      <!-- ヒヨコ -->
       <div class="character" onclick="location.href='hiyoko_profile.html'">
         <img src="hiyoko_icon.jpg" alt="ヒヨコの顔アイコン">
         <h2>ヒヨコ</h2>
-        <!-- ヒヨコの情報やイラストをここに追加 -->
+        <!-- ヒヨコの情報 -->
       </div>
     </div>
   </main>
