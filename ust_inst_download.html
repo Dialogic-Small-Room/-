@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UST & INST 配布</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'DotGothic16', Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      color: white;
+    }
+
+    header, footer {
+      background-color: black;
+      color: black;
+      text-align: center;
+      padding: 10px 0;
+      text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+      border-top: 2px solid white;
+      border-bottom: 2px solid white;
+    }
+
+    header h1 {
+      margin: 0;
+      padding: 20px;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .song-button {
+      background-color: black;
+      color: white;
+      border: 2px solid white;
+      padding: 10px 20px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      margin: 10px 0;
+      width: 100%;
+      display: block;
+      text-align: left;
+    }
+
+    .song-button:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .download-section {
+      display: none;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid white;
+      background-color: #333;
+    }
+
+    .download-section a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      margin: 5px 0;
+    }
+
+    .download-section a:hover {
+      text-decoration: underline;
+    }
+
+    .menu-icon {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      font-size: 30px;
+      cursor: pointer;
+      z-index: 9999;
+      padding: 10px;
+    }
+
+    .menu-tab {
+      position: fixed;
+      top: 0;
+      right: 0;
+      background-color: black;
+      width: 200px;
+      padding: 20px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 999;
+      border-left: 2px solid white;
+    }
+
+    .menu-tab ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .menu-tab ul li {
+      margin-bottom: 10px;
+    }
+
+    .menu-tab ul li a {
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+    }
+
+    .menu-tab ul li a:hover {
+      background-color: #003d80;
+      border-radius: 5px;
+    }
+
+    .menu-tab.show-menu {
+      transform: translateX(0);
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  <div class="menu-tab">
+    <ul>
+      <li><a href="index.html">トップ</a></li>
+      <li><a href="terms.html">利用規約</a></li>
+      <li><a href="characters.html">キャラ紹介</a></li>
+      <li><a href="download.html">音源配布</a></li>
+      <li><a href="ust_inst_download.html">UST & INST 配布</a></li>
+    </ul>
+  </div>
+  <header>
+    <h1>UST & INST 配布</h1>
+    <p>曲名をクリックするとUSTやINSTのダウンロードリンクが表示されるよ！</p>
+    <p>規約を守って使ってね！</p>
+  </header>
+  <main>
+    <section>
+      <button class="song-button" onclick="toggleSection('song1')">ヒトリヒトトナリ</button>
+      <div id="song1" class="download-section">
+        <a href="example_song1_ust.zip" download>UST: Example Song 1</a>
+        <a href="ヒトリヒトトナリ_inst_okinai_.mp3" download>INST: ヒトリヒトトナリ</a>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2024 okinai</p>
+  </footer>
+  <script>
+    function toggleMenu() {
+      const menuTab = document.querySelector('.menu-tab');
+      menuTab.classList.toggle('show-menu');
+    }
+
+    function toggleSection(id) {
+      const section = document.getElementById(id);
+      section.style.display = section.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+</body>
+</html>
